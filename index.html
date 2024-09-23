@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Landing Page</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <script src="https://kit.fontawesome.com/9a2c1412cd.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+
+        <header class="header">
+            <div class="header-content">
+                <nav>
+                    <ul>
+                        <li>
+                            <i class="fa-solid fa-house"></i> Home
+                        </li>
+                        <li class="seperator">
+                            |
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-plus"></i> Add post
+                        </li>
+                    </ul>
+                </nav>
+                <div class="profile-pic"></div>
+            </div>
+        </header>
+
+        <main class="main-content" id="posts-container">
+            <template id="post-template">
+                <div class="post">
+                    <div class="post-header">
+                        <div class="profile-pic"></div>
+                        <span class="post-author"></span>
+                        <span class="post-date"></span>
+                    </div>
+                    <hr class="solid">
+                    <div class="post-body">
+                        <img src="" alt="Post Image" class="post-image">
+                        <p class="post-text"></p>
+                    </div>
+                    <hr class="solid">
+                    <div class="post-footer">
+                        <button class="engagement">
+                            <i class="fa-regular fa-heart"></i> Like
+                        </button>
+                        <button class="engagement">
+                            <i class="fa-regular fa-comment"></i> Comment
+                        </button>
+                        <button class="engagement">
+                            <i class="fa-solid fa-retweet"></i> Share
+                        </button>
+                    </div>
+                </div>
+            </template>
+        </main>
+
+        <footer class="footer">
+            <p>Footer</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // JavaScript to clone the template and insert it into the DOM
+        const postsContainer = document.getElementById('posts-container');
+        const postTemplate = document.getElementById('post-template').content;
+
+        // Example post data
+        const posts = [
+            {
+                author: 'hkallaste',
+                date: 'Oct 2, 2022',
+                text: 'Anyone knows in which room is the lab today?',
+                imgSrc: '',
+            },
+            {
+                author: 'John Doe',
+                date: 'Sep 30, 2022',
+                text: 'Loving the fall weather!',
+                imgSrc: '',
+            },
+            {
+                author: 'John Doe',
+                date: 'Sep 30, 2022',
+                text: 'Loving the fall weather!',
+                imgSrc: '',
+            },
+            {
+                author: 'John Doe',
+                date: 'Sep 30, 2022',
+                text: 'Loving the fall weather!',
+                imgSrc: '',
+            },
+            {
+                author: 'John Doe',
+                date: 'Sep 30, 2022',
+                text: 'Loving the fall weather!',
+                imgSrc: '',
+            },
+            {
+                author: 'John Doe',
+                date: 'Sep 30, 2022',
+                text: 'Loving the fall weather!',
+                imgSrc: '',
+            }
+        ];
+
+        // Function to create a post
+        function createPost(postData) {
+            const clone = document.importNode(postTemplate, true); // Clone the template
+
+            // Fill the cloned template with data
+            clone.querySelector('.post-author').textContent = postData.author;
+            clone.querySelector('.post-date').textContent = postData.date;
+            clone.querySelector('.post-text').textContent = postData.text;
+
+            const imgElement = clone.querySelector('.post-image');
+            if (postData.imgSrc) {
+                imgElement.src = postData.imgSrc;
+                imgElement.alt = postData.text;
+            } else {
+                imgElement.style.display = 'none'; // Hide the image if no src
+            }
+
+            postsContainer.appendChild(clone); // Append the post to the container
+        }
+
+        // Create all posts
+        posts.forEach(postData => createPost(postData));
+    </script>
+</body>
+</html>
