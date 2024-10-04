@@ -1,0 +1,70 @@
+#add-post {
+    display: none;
+}
+
+.header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.login-container {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.login-content {
+    text-align: center;
+    border: 2px solid #ccc;
+    padding: 15px 80px 5px 80px;
+    font-size: 1.25em;
+    background-color: #e2e2e2;
+    width: 100%;
+}
+
+.login-content p {
+    padding-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.login-content h2 {
+    margin-bottom: 15px;
+    color: #ba181b;   
+}
+
+.button {
+    font-size: 1em;
+    padding: 4px;
+    width: 100%;
+}
+
+#login-button {
+    background-color: #1565C0;
+    color: white;
+}
+
+.form-group #password, .form-group #email {
+    font-size: 1em;
+}
+
+#create-account {
+    background-color: #ba181b;
+    color: white;
+}
+
+#forgot-password {
+    display: block;
+    text-align: end;
+    font-size: 0.7em;
+}
