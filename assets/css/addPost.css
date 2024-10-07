@@ -1,7 +1,7 @@
 .container {
     display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
+    justify-content: center;
+    align-items: center;
     border: none;
     box-shadow: none;
 }
@@ -10,12 +10,12 @@
 #addPost-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    background-color: #fff; /* Background color */
-    border-radius: 15px; /* Rounded edges */
-    width: 400px; /* Smaller width for the post box */
-    padding: 20px; /* Padding inside the container */
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--feedBackgroundColor);
+    border-radius: 15px;
+    width: 400px;
+    padding: 20px;
     margin: 40px auto;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     margin: 40px auto;
@@ -55,8 +55,8 @@
     flex-grow: 0;
     margin-right: 10px;
     align-self: center;
-    width: 100px; /* Fixed width to align the labels */
-    text-align: right; /* Align the label text to the right */
+    width: 100px;
+    text-align: right;
 }
 
 .post button {
@@ -65,7 +65,7 @@
     background-color: #28a745;
     color: white;
     border: none;
-    border-radius: 5px; /* MUUTA */
+    border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
     margin-top: 20px;
@@ -99,5 +99,11 @@
 @media (max-width: 400px) {
     #addPost-container {
         width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .post-row textarea {
+        height: 50px;
     }
 }
