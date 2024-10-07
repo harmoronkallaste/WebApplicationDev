@@ -1,0 +1,82 @@
+.container {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    border: none;
+    box-shadow: none;
+}
+
+
+#addPost-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    background-color: #fff; /* Background color */
+    border-radius: 15px; /* Rounded edges */
+    width: 400px; /* Smaller width for the post box */
+    padding: 20px; /* Padding inside the container */
+    margin: 40px auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 40px auto;
+}
+
+.post {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.post-row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.post-row textarea,
+.post-row input {
+    flex-grow: 1;
+}
+
+.post-row textarea {
+    font-size: 1rem;
+    font-family: inherit;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    resize: none;
+}
+
+.post-row label {
+    flex-grow: 0;
+    margin-right: 10px;
+    align-self: center;
+    width: 100px; /* Fixed width to align the labels */
+    text-align: right; /* Align the label text to the right */
+}
+
+.post button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px; /* MUUTA */
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.post button:hover {
+    background-color: #218838;
+}
+
+.engagement:hover i {
+    color: var(--primaryColor);
+}
