@@ -1,3 +1,5 @@
+@import 'variables.css';
+
 #add-post {
     display: none;
 }
@@ -23,11 +25,13 @@
 
 .login-content {
     text-align: center;
-    border: 2px solid #ccc;
+    border: 1px solid #ccc;
     padding: 15px 80px 5px 80px;
     font-size: 1.25em;
-    background-color: #e2e2e2;
+    background-color: var(--feedBackgroundColor);
     width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 15px;
 }
 
 .login-content p {
@@ -47,6 +51,9 @@
     font-size: 1em;
     padding: 4px;
     width: 100%;
+    border-radius: 999px;
+    border: 2px solid #fff;
+    transition: 0.5s, border-width ease;
 }
 
 #login-button {
@@ -67,4 +74,28 @@
     display: block;
     text-align: end;
     font-size: 0.7em;
+}
+
+input {
+    padding: 12px 10px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+.button:hover {
+    transform: scale(1.10); /* Slightly increase the size of the button */
+}
+
+#login-button:hover {
+    background-color: white;
+    border-color: #0ed736;
+    color: #0ed736;
+    
+}
+
+#create-account:hover {
+    background-color: white;
+    border-color: #ba181b;
+    color: #ba181b;
 }
