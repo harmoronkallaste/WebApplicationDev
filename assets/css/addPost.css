@@ -80,3 +80,24 @@
 .engagement:hover i {
     color: var(--primaryColor);
 }
+
+@media (max-width: 400px) {
+    #addPost-container {
+
+    }
+}
+
+@media (max-width: 400px) {
+    .post-row {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    #addPost-container {
+        width: 100%;
+    }
+}
