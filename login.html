@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+        <title>Blog Login Page</title>
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/login.css">
+        <script src="https://kit.fontawesome.com/9a2c1412cd.js" crossorigin="anonymous"></script>
+    </head>
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <nav>
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-house"></i> Home
+                    </li>
+                    <li class="seperator">
+                        |
+                    </li>
+                    <li id="add-post">
+                        <i class="fa-solid fa-plus" id="add-post"></i> Add post
+                    </li>
+                </ul>
+            </nav>
+            <div class="profile-pic"></div> 
+        </div>
+    </header>
+
+    <div class="login-container">
+        <main class="login-content" id="login-container">
+            <h2>Welcome to PostIt</h2>
+            <form action="/login" method="post">
+                <button type="create-account" class="button" id="create-account">Create an account</button>
+                <p>
+                    or <br> Please log in
+                </p>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+
+                <div class="form-group">
+                    <a href="" id="forgot-password">Forgot password?</a>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="button" id="login-button">Log in</button>
+                </div>
+            </form>
+        </main>    
+    </div>
+
+    <footer class="footer">
+        <p style="display: none;">Footer</p>
+    </footer>
+</body>
+</html>
