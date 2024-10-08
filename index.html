@@ -15,17 +15,24 @@
             <nav>
                 <ul>
                     <li>
-                        <i class="fa-solid fa-house"></i> Home
+                        <a href="login.html">
+                            <i class="fa-solid fa-house"></i> <span>Home</span>
+                        </a>
                     </li>
                     <li class="seperator">
                         |
                     </li>
                     <li>
-                        <i class="fa-solid fa-plus"></i> Add post
+                        <a href="addPost.html">
+                            <i class="fa-solid fa-plus"></i> <span>Add post</span>
+                        </a>
                     </li>
                 </ul>
             </nav>
-            <div class="profile-pic"></div> 
+            <div class="profile-pic">
+                <h4>hkallaste</h4>
+                <img src="assets/images/profilepic.jpg">
+            </div> 
         </div>
     </header>
 
@@ -34,7 +41,9 @@
             <template id="post-template">
                 <div class="post">
                     <div class="post-header">
-                        <div class="profile-pic"></div>
+                        <div class="author-pic">
+                            <img src="" class="author-img">
+                        </div>
                         <span class="post-author"></span>
                         <span class="post-date"></span>
                     </div>
@@ -61,7 +70,8 @@
     </div>
 
     <footer class="footer">
-        <p style="display: none;">Footer</p>
+        <h4>Web Application Development - Homework 1</h4>
+        <p>Harmo-Ron Kallaste, Reno Feliks Lindvere, Ron Aaron Vahtra</p>
     </footer>
 
     <script>
@@ -73,6 +83,7 @@
         const posts = [
             {
                 author: 'hkallaste',
+                profile_pic: 'assets/images/profilepic.jpg',
                 date: 'Oct 2, 2022',
                 text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                 Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -86,36 +97,41 @@
                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
                 consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
                 esse cillum dolore eu fugiat nulla pariatur.`,
-                imgSrc: '',
+                imgSrc: 'assets/images/profilepic.jpg',
             },
             {
-                author: 'John Doe',
-                date: 'Sep 30, 2022',
+                author: 'rkreem2002',
+                profile_pic: 'assets/images/robin.jpg',
+                date: 'Oct 1, 2022',
                 text: 'Loving the fall weather!',
                 imgSrc: '',
             },
             {
-                author: 'John Doe',
-                date: 'Sep 30, 2022',
-                text: 'Loving the fall weather!',
-                imgSrc: '',
+                author: 'jkreem098',
+                profile_pic: 'assets/images/jaagup.jpg',
+                date: 'Sep 19, 2022',
+                text: 'Leidsin hiljuti uue laheda bandi - Analoog. Soovitan kuulata!',
+                imgSrc: 'assets/images/band1.jpg',
             },
             {
                 author: 'John Doe',
-                date: 'Sep 30, 2022',
-                text: 'Loving the fall weather!',
+                profile_pic: 'assets/images/koos.jpg',
+                date: 'Sep 10, 2022',
+                text: 'Marcus is a fictional character who loves exploring new places and meeting new people. He has a knack for storytelling and often shares his adventures with friends.',
                 imgSrc: '',
             },
             {
-                author: 'John Doe',
-                date: 'Sep 30, 2022',
-                text: 'Loving the fall weather!',
+                author: 'MarcusAurelius',
+                profile_pic: 'assets/images/koos.jpg',
+                date: 'Aug 30, 2022',
+                text: ' Artificial intelligence (AI) is transforming industries by automating tasks, enhancing decision-making, and enabling new capabilities. From healthcare to finance, AI-driven solutions are improving efficiency and accuracy. Machine learning, a subset of AI, allows systems to learn from data and improve over time without explicit programming. Natural language processing (NLP) enables machines to understand and respond to human language, revolutionizing customer service and communication. As AI technology advances, ethical considerations and responsible deployment become crucial to ensure benefits are maximized while minimizing potential risks. The future of AI holds immense potential for innovation and societal impact.',
                 imgSrc: '',
             },
             {
-                author: 'John Doe',
-                date: 'Sep 30, 2022',
-                text: 'Loving the fall weather!',
+                author: 'xXx_rasmusMade_xXx',
+                profile_pic: 'assets/images/band2.jpg',
+                date: 'Aug 20, 2022',
+                text: 'ma sain cs-is rank upi!',
                 imgSrc: '',
             }
         ];
@@ -129,10 +145,16 @@
             clone.querySelector('.post-date').textContent = postData.date;
             clone.querySelector('.post-text').textContent = postData.text;
 
+            const authorPicElement = clone.querySelector('.author-img');
+            if (postData.profile_pic) {
+                authorPicElement.src = postData.profile_pic;
+            } else {
+                authorPicElement.style.display = 'none'; // Hide the image if no src
+            }
+            
             const imgElement = clone.querySelector('.post-image');
             if (postData.imgSrc) {
                 imgElement.src = postData.imgSrc;
-                imgElement.alt = postData.text;
             } else {
                 imgElement.style.display = 'none'; // Hide the image if no src
             }

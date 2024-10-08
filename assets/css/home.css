@@ -4,6 +4,7 @@
     overflow-y: auto;
     scroll-behavior: smooth;
     background-color: var(--feedBackgroundColor);
+    border-radius: 30px;
 }
 
 .post {
@@ -43,14 +44,56 @@
   }
 
 .post-body {
-    font-size: 1rem;
+    font-size: 1.25rem;
     text-align: justify;
+    display: flex;
+    flex-direction: column;
 }
 
 .post-image {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
+    width: 40%; /* Make the image fit the width of the post-body */
+    height: auto; /* Maintain the aspect ratio */
+    max-width: 100%; /* Ensure the image does not exceed the container's width */
+    margin: 10px auto; /* Add some space around the image */
+}
+
+/* Increase width as screen gets narrower */
+@media (max-width: 1200px) {
+    .post-body {
+        font-size: 1.20rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .post-body {
+        font-size: 1.15rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .post-body {
+        font-size: 1.10rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .post-body {
+        font-size: 1rem;
+    }
+}
+
+.author-pic {
+    width: 60px; /* Set the desired width */
+    height: 60px; /* Set the desired height */
+    border-radius: 50%; /* Make the container circular */
+    overflow: hidden; /* Ensure the image does not overflow the container */
+}
+
+.author-pic img {
+    width: 100%; /* Make the image fit the container */
+    height: 100%; /* Make the image fit the container */
+    object-fit: cover; /* Ensure the image covers the container without distortion */
+    
 }
 
 .post-footer {
