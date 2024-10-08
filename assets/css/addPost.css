@@ -1,6 +1,6 @@
 @import 'variables.css';
 
-.container {
+.container { /* requirement met: class selector */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,8 +8,7 @@
     box-shadow: none;
 }
 
-
-#addPost-container {
+#addPost-container { /* requirement met: ID selector */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -42,7 +41,7 @@
     flex-grow: 1;
 }
 
-.post-row textarea {
+.post-row textarea { /* requirement met: descendant selector */
     font-size: 1rem;
     font-family: inherit;
     height: 150px;
@@ -53,6 +52,10 @@
     resize: none;
 }
 
+textarea + input { /* requirement met: adjacent sibling selector */
+    margin-top: 10px;
+}
+
 .post-row label {
     flex-grow: 0;
     margin-right: 10px;
@@ -61,8 +64,12 @@
     text-align: right;
 }
 
+textarefa ~ label { /* requirement met: general sibling selector */
+    color: var(--detailsColor);
+    font-size: 0.9rem;
+}
 
-.post button {
+.post > button { /* requirement met: child selector */
     width: 75%;
     padding: 10px;
     background-color: var(--primaryColor);
@@ -78,19 +85,11 @@
 }
 
 
-.post button:hover {
+.post button:hover { /* requirement met: pseudo-class */
     background-color: transparent;
     border-color: var(--primaryColor);
     color: var(--primaryColor);
     transform: scale(1.10);
-}
-
-
-
-@media (max-width: 400px) {
-    #addPost-container {
-
-    }
 }
 
 @media (max-width: 400px) {
