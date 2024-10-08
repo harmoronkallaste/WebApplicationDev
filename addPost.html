@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/addPost.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="header-content">
+        <nav>
+            <ul>
+                <li>
+                    <i class="fa-solid fa-house"></i> Home
+                </li>
+                <li class="seperator">
+                    |
+                </li>
+            </ul>
+        </nav>
+        <div class="profile-pic"></div>
+    </div>
+</header>
+
+<div class="container">
+    <main class="main-content" id="addPost-container">
+        <form action="/index.html" method="POST" enctype="multipart/form-data">
+        <div class="post">
+            <!-- First Row: Post Body and Textarea -->
+            <div class="post-row">
+                <textarea id="postBody" name="postBody" placeholder="Write your post here..." required></textarea>
+            </div>
+
+            <!-- Second Row: Select File and File Input -->
+            <div class="post-row">
+                <label for="fileInput">Select file</label>
+                <input id="fileInput" type="file" name="file" accept="image/*, video/*">
+            </div>
+
+            <!-- Third Row: Submit Button Centered -->
+            <button type="submit">Create Post</button>
+        </div>
+        </form>
+    </main>
+</div>
+
+</body>
+<footer class="footer"></footer>
+</html>

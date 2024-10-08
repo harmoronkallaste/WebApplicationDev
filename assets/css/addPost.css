@@ -1,0 +1,115 @@
+@import 'variables.css';
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    box-shadow: none;
+}
+
+
+#addPost-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--feedBackgroundColor);
+    border-radius: 15px;
+    width: 400px;
+    padding: 20px;
+    margin: 40px auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 40px auto;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.post-row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.post-row textarea,
+.post-row input {
+    flex-grow: 1;
+}
+
+.post-row textarea {
+    font-size: 1rem;
+    font-family: inherit;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    resize: none;
+}
+
+.post-row label {
+    flex-grow: 0;
+    margin-right: 10px;
+    align-self: center;
+    width: 100px;
+    text-align: right;
+}
+
+
+.post button {
+    width: 75%;
+    padding: 10px;
+    background-color: var(--primaryColor);
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    font-size: 1.15rem;
+    cursor: pointer;
+    margin-top: 20px;
+    text-align: center;
+    border: 2px solid #fff;
+    transition: 0.5s, border-width ease;
+}
+
+
+.post button:hover {
+    background-color: transparent;
+    border-color: var(--primaryColor);
+    color: var(--primaryColor);
+    transform: scale(1.10);
+}
+
+
+
+@media (max-width: 400px) {
+    #addPost-container {
+
+    }
+}
+
+@media (max-width: 400px) {
+    .post-row {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    #addPost-container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .post-row textarea {
+        height: 50px;
+    }
+}
