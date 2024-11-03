@@ -31,14 +31,18 @@
     <div class="login-container">
         <main class="login-content" id="login-container">
             <h2>Welcome to PostIt</h2>
-            <form action="/login" method="post">
-                <button type="create-account" class="button" id="create-account">Create an account</button>
-                <p>
-                    or <br> Please log in
-                </p>
+            <form id="loginForm" action="/login" method="post">
+                <button type="button" class="button" id="create-account">Create an account</button>
+                <p id="loginPrompt"> or <br> Please log in </p>
+
+                <div class="form-group" id="username-group" style="display: none;">
+                    <input type="text" id="username" name="username" placeholder="Username">
+                </div>
+
                 <div class="form-group">
                     <input type="email" id="email" name="email" placeholder="Email" required>
                 </div>
+
                 <div class="form-group">
                     <input type="password" id="password" name="password" placeholder="Password" required>
                 </div>
@@ -58,5 +62,6 @@
         <h4>Web Application Development - Homework 1</h4>
         <p>Harmo-Ron Kallaste, Reno Feliks Lindvere, Ron Aaron Vahtra</p>
     </footer>
+    <script src="assets/js/login.js"></script>
 </body>
 </html>

@@ -99,3 +99,8 @@ input {
     border-color: #ba181b;
     color: #ba181b;
 }
+
+#username {
+    margin-top: 20px;
+    font-size: 1em;
+}
