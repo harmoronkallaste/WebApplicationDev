@@ -73,7 +73,7 @@ body {
     color: inherit; /* Inherit color from parent */
 }
 
-.header li:hover {
+.header li:not(.seperator):hover  {
     background-color: white; /* Change to desired hover background color */
     transform: scale(1.10);
     color: var(--primaryColor);
@@ -151,3 +151,30 @@ body {
     }
 }
 
+.profile-pic {
+    position: relative; /* Ensure the dropdown menu is positioned relative to the profile-pic div */
+}
+
+.dropdown-menu {
+    display: none; /* Hide the dropdown menu by default */
+    position: absolute;
+    top: 100%; /* Position the dropdown menu below the profile-pic div */
+    left: 0;
+    transform: translateY(-10px); /* Adjust this value to align with the white container */
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 100%; /* Ensure the dropdown menu is as wide as the profile-pic div */
+    border-radius: 8px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-menu a:hover {
+    color: var(--primaryColor);
+}

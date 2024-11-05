@@ -1,44 +1,67 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const profileImage = document.getElementById("profilePicture");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+
+    profileImage.addEventListener("click", () => {
+        if (dropdownMenu.style.display === "block") {
+            dropdownMenu.style.display = "none";
+        } else {
+            dropdownMenu.style.display = "block";
+        }
+    });
     const loginForm = document.getElementById("loginForm");
     const emailInput = document.getElementById("email");
     const passwordInput = document.getElementById("password");
     const usernameGroup = document.getElementById("username-group");
     const createAccountButton = document.getElementById("create-account");
     const loginButton = document.getElementById("login-button");
-    const loginPrompt = document.getElementById("loginPrompt"); // Select the login prompt text
+    const loginPrompt = document.getElementById("loginPrompt");
     let mockUsers = [];
     let isCreatingAccount = false;
 
-    // Fetch users from JSON file
-    fetch("assets/json/users.json")
-        .then(response => response.json())
-        .then(users => {
-            mockUsers = users;
-        })
-        .catch(error => {
-            console.error("Error loading user data:", error);
-        });
+    
+    
+/*
+    const secretKey = '$2a$10$N715LPdCc891J66nlkF4Kej6Jt3XhNTHfsl/8F7J2VE6XG8BopbeK';
+    const binID = '672a363ae41b4d34e44ee9f0';
 
-    // Toggle between Create Account and Login modes
+    fetch(`https://api.jsonbin.io/v3/b/${binID}`, {
+        method: "GET",
+        headers: {
+            "X-Master-Key": secretKey,
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok " + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("Fetched data:", data);
+        mockUsers = data.record;
+    })
+    .catch(error => {
+        console.error("Error fetching data:", error);
+    });
+*/
     createAccountButton.addEventListener("click", () => {
-        isCreatingAccount = !isCreatingAccount; // Toggle the mode
+        isCreatingAccount = !isCreatingAccount;
 
         if (isCreatingAccount) {
-            // Switch to Create Account mode
-            usernameGroup.style.display = "block"; // Show username field
-            loginButton.textContent = "Create Account"; // Change submit button text
-            createAccountButton.textContent = "Back to Login"; // Change to "Back to Login"
-            loginPrompt.style.display = "none"; // Hide the login prompt text
+            usernameGroup.style.display = "block"; 
+            loginButton.textContent = "Create Account"; 
+            createAccountButton.textContent = "Back to Login"; 
+            loginPrompt.style.display = "none"; 
         } else {
-            // Switch back to Login mode
-            usernameGroup.style.display = "none"; // Hide username field
-            loginButton.textContent = "Log in"; // Change submit button text back to "Log in"
-            createAccountButton.textContent = "Create an Account"; // Change to "Create an Account"
-            loginPrompt.style.display = "block"; // Show the login prompt text
+            usernameGroup.style.display = "none"; 
+            loginButton.textContent = "Log in"; 
+            createAccountButton.textContent = "Create an Account"; 
+            loginPrompt.style.display = "block"; 
         }
     });
 
-    // Handle form submission
     loginForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
@@ -54,25 +77,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function createAccount(username, email, password) {
-        // Check if email already exists
         const existingUser = mockUsers.find(user => user.email === email);
         if (existingUser) {
             alert("An account with this email already exists.");
             return;
         }
 
-        // Add the new user to the mockUsers array
         mockUsers.push({ username, email, password });
         console.log("Account created:", { username, email });
 
         alert("Account created successfully! You can now log in.");
-        isCreatingAccount = false; // Reset to login mode
+        isCreatingAccount = false;
 
-        // Reset form to Login mode
         usernameGroup.style.display = "none";
         loginButton.textContent = "Log in";
         createAccountButton.textContent = "Create an Account";
-        loginPrompt.style.display = "block"; // Show the login prompt text
+        loginPrompt.style.display = "block";
         loginForm.reset();
     }
 
