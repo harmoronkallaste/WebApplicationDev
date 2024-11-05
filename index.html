@@ -16,7 +16,7 @@
                 <ul>
                     <li>
                         <a href="login.html">
-                            <i class="fa-solid fa-house"></i> <span>Home</span>
+                            <i class="fa-solid fa-right-to-bracket"></i> <span>Login</span>
                         </a>
                     </li>
                     <li class="seperator">
@@ -31,7 +31,12 @@
             </nav>
             <div class="profile-pic">
                 <h4 id="profileName">hkallaste</h4>
-                <img src="assets/images/profilepic.jpg">
+                <img id="profilePicture" src="assets/images/profilepic.jpg">
+                <div class="dropdown-menu" id="dropdownMenu" >
+                    <a>hkallaste</a>
+                    <a>hkallaste@hotmail.com</a>
+                    <a>Logout</a>
+                </div>
             </div> 
         </div>
     </header>
@@ -70,81 +75,49 @@
     </div>
 
     <footer class="footer">
-        <h4>Web Application Development - Homework 1</h4>
+        <h4>Web Application Development - Homework 2</h4>
         <p>Harmo-Ron Kallaste, Reno Feliks Lindvere, Ron Aaron Vahtra</p>
     </footer>
 
     <script>
-        // JavaScript to clone the template and insert it into the DOM
         const postsContainer = document.getElementById('posts-container');
         const postTemplate = document.getElementById('post-template').content;
-
+    /*
         // Example post data
-        const posts = [
-            {
-                author: 'hkallaste',
-                profile_pic: 'assets/images/profilepic.jpg',
-                date: 'Oct 2, 2022',
-                text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
-                culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum 
-                dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
-                esse cillum dolore eu fugiat nulla pariatur.`,
-                imgSrc: 'assets/images/profilepic.jpg',
-            },
-            {
-                author: 'rkreem2002',
-                profile_pic: 'assets/images/robin.jpg',
-                date: 'Oct 1, 2022',
-                text: 'Loving the fall weather!',
-                imgSrc: '',
-            },
-            {
-                author: 'jkreem098',
-                profile_pic: 'assets/images/jaagup.jpg',
-                date: 'Sep 19, 2022',
-                text: 'Leidsin hiljuti uue laheda bandi - Analoog. Soovitan kuulata!',
-                imgSrc: 'assets/images/band1.jpg',
-            },
-            {
-                author: 'John Doe',
-                profile_pic: 'assets/images/koos.jpg',
-                date: 'Sep 10, 2022',
-                text: 'Marcus is a fictional character who loves exploring new places and meeting new people. He has a knack for storytelling and often shares his adventures with friends.',
-                imgSrc: '',
-            },
-            {
-                author: 'MarcusAurelius',
-                profile_pic: 'assets/images/koos.jpg',
-                date: 'Aug 30, 2022',
-                text: ' Artificial intelligence (AI) is transforming industries by automating tasks, enhancing decision-making, and enabling new capabilities. From healthcare to finance, AI-driven solutions are improving efficiency and accuracy. Machine learning, a subset of AI, allows systems to learn from data and improve over time without explicit programming. Natural language processing (NLP) enables machines to understand and respond to human language, revolutionizing customer service and communication. As AI technology advances, ethical considerations and responsible deployment become crucial to ensure benefits are maximized while minimizing potential risks. The future of AI holds immense potential for innovation and societal impact.',
-                imgSrc: '',
-            },
-            {
-                author: 'xXx_rasmusMade_xXx',
-                profile_pic: 'assets/images/band2.jpg',
-                date: 'Aug 20, 2022',
-                text: 'ma sain cs-is rank upi!',
-                imgSrc: '',
+        const secretKey = '$2a$10$N715LPdCc891J66nlkF4Kej6Jt3XhNTHfsl/8F7J2VE6XG8BopbeK';
+        const binID = '672a3f0aacd3cb34a8a3248b';
+    
+        fetch(`https://api.jsonbin.io/v3/b/${binID}`, {
+            method: "GET",
+            headers: {
+                "X-Master-Key": secretKey, // Your JSONBin secret key
+                "Content-Type": "application/json"
             }
-        ];
-
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok " + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Fetched data:", data);
+            // Create all posts
+            data.record.forEach(postData => createPost(postData));
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+        });
+    */
         // Function to create a post
         function createPost(postData) {
             const clone = document.importNode(postTemplate, true); // Clone the template
-
+    
             // Fill the cloned template with data
             clone.querySelector('.post-author').textContent = postData.author;
             clone.querySelector('.post-date').textContent = postData.date;
             clone.querySelector('.post-text').textContent = postData.text;
-
+    
             const authorPicElement = clone.querySelector('.author-img');
             if (postData.profile_pic) {
                 authorPicElement.src = postData.profile_pic;
@@ -158,12 +131,22 @@
             } else {
                 imgElement.style.display = 'none'; // Hide the image if no src
             }
-
+    
             postsContainer.appendChild(clone); // Append the post to the container
         }
 
-        // Create all posts
-        posts.forEach(postData => createPost(postData));
+        document.addEventListener("DOMContentLoaded", () => {
+            const profileImage = document.getElementById("profilePicture");
+            const dropdownMenu = document.getElementById("dropdownMenu");
+
+            profileImage.addEventListener("click", () => {
+                if (dropdownMenu.style.display === "block") {
+                    dropdownMenu.style.display = "none";
+                } else {
+                    dropdownMenu.style.display = "block";
+                }
+            });
+        });
     </script>
 </body>
 </html>
