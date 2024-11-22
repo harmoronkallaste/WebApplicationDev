@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -7,6 +8,7 @@
         <link rel="stylesheet" href="assets/css/styles.css">
         <link rel="stylesheet" href="assets/css/login.css">
         <script src="https://kit.fontawesome.com/9a2c1412cd.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
     </head>
 <body>
 
@@ -48,8 +50,20 @@
                     <input type="email" id="email" name="email" placeholder="Email" required>
                 </div>
 
-                <div class="form-group">
-                    <input type="password" id="password" name="password" placeholder="Password" required>
+                <div id="app">
+                    <div class="form-group">
+                        <input
+                            type="password"
+                            id="password"
+                            v-model="password"
+                            @focus="handleFocus"
+                            @blur="handleBlur"
+                            placeholder="Password"
+                            required>
+                    </div>
+                    <div class="validation-errors" v-if="touched && passwordErrors.length > 0">
+                        <p v-for="error in passwordErrors" :key="error" class="error">{{ error }}</p>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -61,7 +75,7 @@
                 </div>
             </form>
         </main>    
-    </div>
+    </div>    
 
     <footer class="footer">
         <h4>Web Application Development - Homework 2</h4>

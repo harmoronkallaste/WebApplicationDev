@@ -104,3 +104,8 @@ input {
     margin-top: 20px;
     font-size: 1em;
 }
+
+.validation-errors {
+    color: red;
+    font-size: 0.7em;
+}

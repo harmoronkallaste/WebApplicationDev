@@ -19,9 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let mockUsers = [];
     let isCreatingAccount = false;
 
-    
-    
-/*
     const secretKey = '$2a$10$N715LPdCc891J66nlkF4Kej6Jt3XhNTHfsl/8F7J2VE6XG8BopbeK';
     const binID = '672a363ae41b4d34e44ee9f0';
 
@@ -45,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(error => {
         console.error("Error fetching data:", error);
     });
-*/
+
     createAccountButton.addEventListener("click", () => {
         isCreatingAccount = !isCreatingAccount;
 
@@ -109,3 +106,57 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
+
+// Vue
+
+const app = Vue.createApp({
+    data() {
+        return {
+            password: "",
+            passwordErrors: [],
+            touched: false
+        };
+    },
+    watch: {
+        password(newPassword) {
+            this.validatePassword(newPassword);
+        }
+    },
+    methods: {
+        validatePassword(password) {
+            this.passwordErrors = [];
+
+            const lengthCheck = password.length >= 8 && password.length < 15;
+            const uppercaseCheck = /[A-Z]/.test(password);
+
+            let lowercaseCount = 0;
+            for (let char of password) {
+                if (char >= 'a' && char <= 'z') {
+                    lowercaseCount++;
+                }
+                if (lowercaseCount >= 2) break;
+            }
+
+            const lowercaseCheck = lowercaseCount >= 2;
+
+        const numericCheck = /\d/.test(password);
+        const startsWithUppercase = /^[A-Z]/.test(password);
+        const underscoreCheck = password.includes("_");
+
+        if (!lengthCheck) this.passwordErrors.push("Password must be 8-14 characters long.");
+        if (!uppercaseCheck) this.passwordErrors.push("Password must include at least one uppercase letter.");
+        if (!lowercaseCheck) this.passwordErrors.push("Password must include at least two lowercase letters.");
+        if (!numericCheck) this.passwordErrors.push("Password must include at least one numeric value.");
+        if (!startsWithUppercase) this.passwordErrors.push("Password must start with an uppercase letter.");
+        if (!underscoreCheck) this.passwordErrors.push("Password must include the character '_'.");
+        },
+        handleFocus() {
+            this.touched = true;
+        },
+        handleBlur() {
+            this.touched = false;
+        }
+    }
+});
+
+app.mount("#app");
