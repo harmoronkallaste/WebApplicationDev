@@ -74,6 +74,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function createAccount(username, email, password) {
+        app._instance.proxy.validatePassword(password);
+        if (app._instance.proxy.passwordErrors.length > 0) {
+            alert("Please ensure your password meets all validation criteria.");
+            return;
+        }
+
         const existingUser = mockUsers.find(user => user.email === email);
         if (existingUser) {
             alert("An account with this email already exists.");
@@ -94,8 +100,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function loginUser(email, password) {
-        const user = mockUsers.find(user => user.email === email && user.password === password);
+        app._instance.proxy.validatePassword(password);
+        if (app._instance.proxy.passwordErrors.length > 0) {
+            alert("Please ensure your password meets all validation criteria.");
+            return;
+        }
 
+        const user = mockUsers.find(user => user.email === email && user.password === password);
         if (user) {
             alert("Login successful!");
             localStorage.setItem("isLoggedIn", "true");
