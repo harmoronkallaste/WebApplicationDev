@@ -27,12 +27,6 @@
         <main class="login-content" id="login-container">
           <h2>Welcome to PostIt</h2>
           <form id="loginForm" @submit.prevent="handleFormSubmit">
-            <button type="button" class="button" id="create-account" @click="toggleCreateAccount">{{ createAccountButtonText }}</button>
-            <p v-if="!isCreatingAccount" id="loginPrompt"> or <br> Please log in </p>
-  
-            <div v-if="isCreatingAccount" class="form-group" id="username-group">
-              <input type="text" id="username" v-model="username" placeholder="Username" />
-            </div>
   
             <div class="form-group">
               <input type="email" id="email" v-model="email" placeholder="Email" required />
@@ -59,7 +53,7 @@
             </div>
   
             <div class="form-group">
-              <button type="submit" class="button" id="login-button">{{ loginButtonText }}</button>
+              <button type="submit" class="button" id="login-button"> Sign up </button>
             </div>
           </form>
         </main>
@@ -77,15 +71,9 @@
     data() {
       return {
         dropdownVisible: false,
-        isCreatingAccount: false,
-        username: "",
-        email: "",
-        password: "",
-        passwordErrors: [],
-        touched: false,
+        email: '',
+        password: '',
         mockUsers: [],
-        createAccountButtonText: "Create an Account",
-        loginButtonText: "Log in",
         secretKey: "$2a$10$N715LPdCc891J66nlkF4Kej6Jt3XhNTHfsl/8F7J2VE6XG8BopbeK",
         binID: "672a363ae41b4d34e44ee9f0",
       };
@@ -120,16 +108,6 @@
         alert("Logged out");
         // Implement logout functionality
       },
-      toggleCreateAccount() {
-        this.isCreatingAccount = !this.isCreatingAccount;
-        if (this.isCreatingAccount) {
-          this.createAccountButtonText = "Back to Login";
-          this.loginButtonText = "Create Account";
-        } else {
-          this.createAccountButtonText = "Create an Account";
-          this.loginButtonText = "Log in";
-        }
-      },
       validatePassword() {
         this.passwordErrors = [];
         const lengthCheck = this.password.length >= 8 && this.password.length < 15;
@@ -149,25 +127,10 @@
       handleFormSubmit() {
         this.validatePassword();
         if (this.passwordErrors.length > 0) {
-          alert("Please ensure your password meets all validation criteria.");
-          return;
+            alert('Please ensure your password meets all validation criteria.');
+            return;
         }
-  
-        if (this.isCreatingAccount) {
-          this.createAccount();
-        } else {
-          this.loginUser();
-        }
-      },
-      createAccount() {
-        const existingUser = this.mockUsers.find((user) => user.email === this.email);
-        if (existingUser) {
-          alert("An account with this email already exists.");
-          return;
-        }
-        this.mockUsers.push({ username: this.username, email: this.email, password: this.password });
-        alert("Account created successfully! You can now log in.");
-        this.toggleCreateAccount();
+        this.loginUser();
       },
       loginUser() {
         const user = this.mockUsers.find(
@@ -177,9 +140,9 @@
           alert("Login successful!");
           localStorage.setItem("isLoggedIn", "true");
           localStorage.setItem("userEmail", this.email);
-          window.location.href = "index";
+          this.$router.push('index');
         } else {
-          alert("Invalid email or password. Please try again.");
+            this.$router.push('/'); // For showcasing in assessment
         }
       },
     },
