@@ -10,7 +10,6 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    vueDevTools(),
   ],
   server: {
     port: 3000,

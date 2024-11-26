@@ -1,17 +1,17 @@
+<!-- LandingPage.vue -->
 <template>
     <div>
       <HeaderComponent />
-  
       <div class="container">
         <main class="main-content">
           <PostComponent
             v-for="post in posts"
             :key="post.id"
             :post="post"
+            @like-post="incrementLike"
           />
         </main>
       </div>
-  
       <FooterComponent />
     </div>
   </template>
@@ -20,6 +20,7 @@
   import HeaderComponent from './Header.vue';
   import FooterComponent from './Footer.vue';
   import PostComponent from './Post.vue';
+  import { mapState, mapActions, mapMutations } from 'vuex';
   
   export default {
     name: 'LandingPage',
@@ -28,27 +29,19 @@
       FooterComponent,
       PostComponent,
     },
-    data() {
-      return {
-        posts: [],
-      };
+    computed: {
+      ...mapState(['posts']),
+    },
+    methods: {
+      ...mapActions(['fetchPosts']),
+      ...mapMutations(['incrementLike']),
     },
     mounted() {
-      // Example fetch to retrieve posts
-      /*
-      fetch('your-api-endpoint')
-        .then((response) => response.json())
-        .then((data) => {
-          this.posts = data.posts;
-        })
-        .catch((error) => {
-          console.error('Error fetching posts:', error);
-        });
-      */
+      this.fetchPosts();
     },
   };
   </script>
   
-  <style scoped>
-  @import '@/assets/css/styles.css';
+  <style>
+    @import '@/assets/css/home.css';
   </style>

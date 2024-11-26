@@ -1,3 +1,4 @@
+<!-- Post.vue -->
 <template>
     <div class="post">
       <div class="post-header">
@@ -19,20 +20,17 @@
       </div>
       <hr class="solid" />
       <div class="post-footer">
-        <button class="engagement">
-          <i class="fa-regular fa-heart"></i> Like
+        <button @click="likePost" class="engagement">
+          <i class="fa-solid fa-heart"></i> Like ({{ post.likeCount || 0 }})
         </button>
-        <button class="engagement">
-          <i class="fa-regular fa-comment"></i> Comment
-        </button>
-        <button class="engagement">
-          <i class="fa-solid fa-retweet"></i> Share
-        </button>
+        <!-- Other buttons if any -->
       </div>
     </div>
   </template>
   
   <script>
+  import defaultProfilePic from '@/assets/images/profilepic.jpg';
+  
   export default {
     name: 'PostComponent',
     props: {
@@ -43,13 +41,18 @@
     },
     data() {
       return {
-        defaultProfilePic: require('@/assets/images/profilepic.jpg'),
+        defaultProfilePic,
       };
+    },
+    methods: {
+      likePost() {
+        this.$emit('like-post', this.post.id);
+      },
     },
   };
   </script>
   
-  <style scoped>
-  @import url('https://kit.fontawesome.com/9a2c1412cd.js');
-  @import '@/assets/css/home.css';
+  <style>
+    @import url('https://kit.fontawesome.com/9a2c1412cd.js');
+    @import '@/assets/css/home.css';
   </style>
