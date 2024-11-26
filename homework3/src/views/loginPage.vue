@@ -110,7 +110,6 @@
         // Implement logout functionality
       },
       handleFormSubmit() {
-        this.validatePassword();
         if (this.passwordErrors.length > 0) {
             alert('Please ensure your password meets all validation criteria.');
             return;
