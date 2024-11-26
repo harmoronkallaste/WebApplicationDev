@@ -114,6 +114,6 @@
   color: var(--detailsColor);
 }
 
-.engagement:hover i {
+.engagement:hover svg {
   color: var(--primaryColor); /* Change the icon color to red on hover */
 }

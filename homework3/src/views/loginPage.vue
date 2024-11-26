@@ -1,28 +1,6 @@
 <template>
     <div id="app">
-      <header class="header">
-        <div class="header-content">
-          <nav>
-            <ul>
-              <li>
-                <router-link to="/">
-                    <i class="fa-solid fa-house"></i> <span>Home</span>
-                </router-link>
-              </li>
-            </ul>
-          </nav>
-          <div class="profile-pic">
-            <h4 id="profileName">hkallaste</h4>
-            <img id="profilePicture" src="../assets/images/profilepic.jpg" @click="toggleDropdown" />
-            <div class="dropdown-menu" id="dropdownMenu" :style="{ display: dropdownVisible ? 'block' : 'none' }">
-              <a>hkallaste</a>
-              <a>hkallaste@hotmail.com</a>
-              <a @click="logout">Logout</a>
-            </div>
-          </div>
-        </div>
-      </header>
-  
+      <HeaderComponent />
       <div class="login-container">
         <main class="login-content" id="login-container">
           <h2>Welcome to PostIt</h2>
@@ -59,15 +37,18 @@
         </main>
       </div>
   
-      <footer class="footer">
-        <h4>Web Application Development - Homework 2</h4>
-        <p>Harmo-Ron Kallaste, Reno Feliks Lindvere, Ron Aaron Vahtra</p>
-      </footer>
+      <FooterComponent />
     </div>
   </template>
   
   <script>
+  import HeaderComponent from '../components/Header.vue'
+  import FooterComponent from '../components/Footer.vue'
   export default {
+    components: {
+      HeaderComponent,
+      FooterComponent,
+    },
     data() {
       return {
         dropdownVisible: false,
@@ -149,8 +130,7 @@
   };
   </script>
   
-  <style scoped>
-  @import url("../assets/css/styles.css");
-  @import url("../assets/css/login.css");
+  <style>
+    @import url("../assets/css/login.css");
   </style>
   

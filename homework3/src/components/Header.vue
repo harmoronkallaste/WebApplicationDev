@@ -4,13 +4,14 @@
       <nav>
         <ul>
           <li>
-            <router-link to="/login">
-              <i class="fa-solid fa-right-to-bracket"></i> <span>Login</span>
+            <router-link to="/">
+                <font-awesome-icon icon="house" /> <span>Home</span>
             </router-link>
           </li>
-          <li class="seperator">|</li>
           <li>
-            <a href="addPost.html"> <i class="fa-solid fa-plus"></i> <span>Add post</span> </a>
+            <router-link to="/login">
+              <font-awesome-icon icon="right-to-bracket" /> <span>Login</span>
+            </router-link>
           </li>
         </ul>
       </nav>
@@ -32,22 +33,24 @@
 </template>
 
 <script>
-import profilePic from '@/assets/images/profilepic.jpg'
 
-export default {
-  name: 'HeaderComponent',
-  data() {
-    return {
-      dropdownVisible: false,
-      profilePic,
-    }
-  },
-  methods: {
-    toggleDropdown() {
-      this.dropdownVisible = !this.dropdownVisible
+  import profilePic from '@/assets/images/profilepic.jpg'
+
+  export default {
+    name: 'HeaderComponent',
+    data() {
+      return {
+        dropdownVisible: false,
+        profilePic,
+      }
     },
-  },
-}
+    methods: {
+      toggleDropdown() {
+        this.dropdownVisible = !this.dropdownVisible
+      },
+    },
+  }
+
 </script>
 
 <style>

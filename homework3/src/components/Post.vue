@@ -1,9 +1,9 @@
-<!-- Post.vue -->
+<!-- src/components/Post.vue -->
 <template>
     <div class="post">
       <div class="post-header">
         <div class="author-pic">
-          <img :src="post.profile_pic || defaultProfilePic" class="author-img" />
+          <img :src="resolvedProfilePic" class="author-img" alt="Author Picture" />
         </div>
         <span class="post-author">{{ post.author }}</span>
         <span class="post-date">{{ post.date }}</span>
@@ -21,18 +21,13 @@
       <hr class="solid" />
       <div class="post-footer">
         <button @click="likePost" class="engagement">
-          <i class="fa-solid fa-heart"></i> Like ({{ post.likeCount || 0 }})
+          <font-awesome-icon icon="heart" /> Like ({{ post.likeCount || 0 }})
         </button>
-        <!-- Other buttons if any -->
       </div>
-      <span class="post-author">{{ post.author }}</span>
-      <span class="post-date">{{ post.date }}</span>
     </div>
   </template>
   
   <script>
-  import defaultProfilePic from '@/assets/images/profilepic.jpg';
-  
   export default {
     name: 'PostComponent',
     props: {
@@ -41,20 +36,24 @@
         required: true,
       },
     },
-    data() {
-      return {
-        defaultProfilePic,
-      };
+    computed: {
+      // Resolve the profile picture path
+      resolvedProfilePic() {
+        return this.post.profile_pic || '/assets/images/profilepic.jpg';
+      },
     },
     methods: {
       likePost() {
-        this.$emit('like-post', this.post.id);
+        this.$emit('like-post', this.post.id); // Emit the unique post.id
       },
     },
   };
   </script>
   
   <style>
-    @import url('https://kit.fontawesome.com/9a2c1412cd.js');
-    @import '@/assets/css/home.css';
+  @import url('https://kit.fontawesome.com/9a2c1412cd.js');
+  @import '@/assets/css/home.css';
+  
+  /* Add any additional styles if necessary */
   </style>
+  

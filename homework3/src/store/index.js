@@ -1,19 +1,29 @@
 // src/store/index.js
 import { createStore } from 'vuex';
+import { v4 as uuidv4 } from 'uuid'; // Import UUID library
 
 export default createStore({
   state: {
     posts: [],
   },
   mutations: {
-    setPosts(state, posts) {
-      state.posts = posts;
-    },
     incrementLike(state, postId) {
       const post = state.posts.find((p) => p.id === postId);
       if (post) {
         post.likeCount = (post.likeCount || 0) + 1;
       }
+    },
+    setPosts(state, posts) {
+      state.posts = posts.map((post) => ({
+        ...post,
+        id: uuidv4(), // Assign a unique ID to each post
+        likeCount: post.likeCount || 0, // Ensure likeCount is initialized
+      }));
+    },
+    resetLikes(state) {
+      state.posts.forEach((post) => {
+        post.likeCount = 0;
+      });
     },
   },
   actions: {
@@ -39,6 +49,9 @@ export default createStore({
       } catch (error) {
         console.error('Error fetching data:', error);
       }
+    },
+    resetAllLikes({ commit }) {
+      commit('resetLikes');
     },
   },
 });
