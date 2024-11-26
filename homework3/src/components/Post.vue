@@ -25,6 +25,8 @@
         </button>
         <!-- Other buttons if any -->
       </div>
+      <span class="post-author">{{ post.author }}</span>
+      <span class="post-date">{{ post.date }}</span>
     </div>
   </template>
   

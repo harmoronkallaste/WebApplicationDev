@@ -10,19 +10,13 @@
           </li>
           <li class="seperator">|</li>
           <li>
-            <a href="addPost.html">
-              <i class="fa-solid fa-plus"></i> <span>Add post</span>
-            </a>
+            <a href="addPost.html"> <i class="fa-solid fa-plus"></i> <span>Add post</span> </a>
           </li>
         </ul>
       </nav>
       <div class="profile-pic">
         <h4 id="profileName">hkallaste</h4>
-        <img
-          id="profilePicture"
-          :src="profilePic"
-          @click="toggleDropdown"
-        />
+        <img id="profilePicture" :src="profilePic" @click="toggleDropdown" />
         <div
           class="dropdown-menu"
           id="dropdownMenu"
@@ -38,7 +32,7 @@
 </template>
 
 <script>
-import profilePic from '@/assets/images/profilepic.jpg';
+import profilePic from '@/assets/images/profilepic.jpg'
 
 export default {
   name: 'HeaderComponent',
@@ -46,14 +40,14 @@ export default {
     return {
       dropdownVisible: false,
       profilePic,
-    };
+    }
   },
   methods: {
     toggleDropdown() {
-      this.dropdownVisible = !this.dropdownVisible;
+      this.dropdownVisible = !this.dropdownVisible
     },
   },
-};
+}
 </script>
 
 <style>
