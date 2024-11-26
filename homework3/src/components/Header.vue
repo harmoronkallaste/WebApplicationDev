@@ -50,7 +50,7 @@ export default {
 }
 </script>
 
-<style scoped>
-@import url('https://kit.fontawesome.com/9a2c1412cd.js');
-@import '@/assets/css/styles.css';
+<style>
+  @import url('https://kit.fontawesome.com/9a2c1412cd.js');
+  @import '@/assets/css/home.css';
 </style>
