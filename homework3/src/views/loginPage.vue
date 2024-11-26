@@ -5,11 +5,11 @@
         <main class="login-content" id="login-container">
           <h2>Welcome to PostIt</h2>
           <form id="loginForm" @submit.prevent="handleFormSubmit">
-  
+
             <div class="form-group">
               <input type="email" id="email" v-model="email" placeholder="Email" required />
             </div>
-  
+
             <div class="form-group">
               <input
                 id="password"
@@ -25,22 +25,22 @@
             <div class="validation-errors" v-if="touched && passwordErrors.length > 0">
               <p v-for="(error, index) in passwordErrors" :key="index" class="error">{{ error }}</p>
             </div>
-  
+
             <div class="form-group">
               <a href="javascript:location.reload()" id="forgot-password">Forgot password?</a>
             </div>
-  
+
             <div class="form-group">
               <button type="submit" class="button" id="login-button"> Sign up </button>
             </div>
           </form>
         </main>
       </div>
-  
+
       <FooterComponent />
     </div>
   </template>
-  
+
   <script>
   import HeaderComponent from '../components/Header.vue'
   import FooterComponent from '../components/Footer.vue'
@@ -61,6 +61,26 @@
     },
     created() {
       this.fetchMockUsers();
+    },
+    computed: {
+      passwordErrors() {
+        const errors = [];
+        const startsWithUppercase = /^[A-Z]/.test(this.password);
+        const lengthCheck = this.password.length > 7 && this.password.length < 15;
+        const uppercaseCheck = /[A-Z]/.test(this.password);
+        const lowercaseCheck = (this.password.match(/[a-z]/g) || []).length >= 2;
+        const numericCheck = /\d/.test(this.password);
+        const underscoreCheck = this.password.includes("_");
+
+        if (!startsWithUppercase) errors.push("Password must start with an uppercase letter.");
+        if (!lengthCheck) errors.push("Password must be 8-14 characters long.");
+        if (!uppercaseCheck) errors.push("Password must include at least one uppercase letter.");
+        if (!lowercaseCheck) errors.push("Password must include at least two lowercase letters.");
+        if (!numericCheck) errors.push("Password must include at least one numeric value.");
+        if (!underscoreCheck) errors.push("Password must include the character '_'.");
+
+        return errors;
+      },
     },
     methods: {
       fetchMockUsers() {
@@ -89,22 +109,6 @@
         alert("Logged out");
         // Implement logout functionality
       },
-      validatePassword() {
-        this.passwordErrors = [];
-        const lengthCheck = this.password.length >= 8 && this.password.length < 15;
-        const uppercaseCheck = /[A-Z]/.test(this.password);
-        const lowercaseCheck = (this.password.match(/[a-z]/g) || []).length >= 2;
-        const numericCheck = /\d/.test(this.password);
-        const startsWithUppercase = /^[A-Z]/.test(this.password);
-        const underscoreCheck = this.password.includes("_");
-  
-        if (!lengthCheck) this.passwordErrors.push("Password must be 8-14 characters long.");
-        if (!uppercaseCheck) this.passwordErrors.push("Password must include at least one uppercase letter.");
-        if (!lowercaseCheck) this.passwordErrors.push("Password must include at least two lowercase letters.");
-        if (!numericCheck) this.passwordErrors.push("Password must include at least one numeric value.");
-        if (!startsWithUppercase) this.passwordErrors.push("Password must start with an uppercase letter.");
-        if (!underscoreCheck) this.passwordErrors.push("Password must include the character '_'.");
-      },
       handleFormSubmit() {
         this.validatePassword();
         if (this.passwordErrors.length > 0) {
@@ -129,8 +133,7 @@
     },
   };
   </script>
-  
+
   <style>
     @import url("../assets/css/login.css");
   </style>
-  
