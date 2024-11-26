@@ -1,0 +1,79 @@
+[
+    {
+        "author": "hkallaste",
+        "profile_pic": "assets/images/profilepic.jpg",
+        "date": "Oct 2, 2022",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "imgSrc": "assets/images/profilepic.jpg"
+    },
+    {
+        "author": "rkreem2002",
+        "profile_pic": "assets/images/robin.jpg",
+        "date": "Oct 1, 2022",
+        "text": "Loving the fall weather!",
+        "imgSrc": ""
+    },
+    {
+        "author": "jkreem098",
+        "profile_pic": "assets/images/jaagup.jpg",
+        "date": "Sep 19, 2022",
+        "text": "Leidsin hiljuti uue laheda bandi - Analoog. Soovitan kuulata!",
+        "imgSrc": "assets/images/band1.jpg"
+    },
+    {
+        "author": "John Doe",
+        "profile_pic": "assets/images/koos.jpg",
+        "date": "Sep 10, 2022",
+        "text": "Marcus is a fictional character who loves exploring new places and meeting new people. He has a knack for storytelling and often shares his adventures with friends.",
+        "imgSrc": ""
+    },
+    {
+        "author": "rkreem2002",
+        "profile_pic": "assets/images/robin.jpg",
+        "date": "Sep 1, 2022",
+        "text": "Went to school today and it was great!",
+        "imgSrc": ""
+    },
+    {
+        "author": "MarcusAurelius",
+        "profile_pic": "assets/images/koos.jpg",
+        "date": "Aug 30, 2022",
+        "text": "Artificial intelligence (AI) is transforming industries by automating tasks, enhancing decision-making, and enabling new capabilities. From healthcare to finance, AI-driven solutions are improving efficiency and accuracy. Machine learning, a subset of AI, allows systems to learn from data and improve over time without explicit programming. Natural language processing (NLP) enables machines to understand and respond to human language, revolutionizing customer service and communication. As AI technology advances, ethical considerations and responsible deployment become crucial to ensure benefits are maximized while minimizing potential risks. The future of AI holds immense potential for innovation and societal impact.",
+        "imgSrc": ""
+    },
+    {
+        "author": "xXx_rasmusMade_xXx",
+        "profile_pic": "assets/images/band2.jpg",
+        "date": "Aug 20, 2022",
+        "text": "ma sain cs-is rank upi!",
+        "imgSrc": ""
+    },
+    {
+        "author": "John Doe",
+        "profile_pic": "assets/images/koos.jpg",
+        "date": "Aug 19, 2022",
+        "text": "Strting to get into sciece fiction books. Any recommendations?",
+        "imgSrc": ""
+    },
+    {
+        "author": "xXx_rasmusMade_xXx",
+        "profile_pic": "assets/images/band2.jpg",
+        "date": "Aug 18, 2022",
+        "text": "t6mbasin endale just counter strikei steamist!!!!!",
+        "imgSrc": ""
+    },
+    {
+        "author": "xXx_rasmusMade_xXx",
+        "profile_pic": "assets/images/band2.jpg",
+        "date": "Aug 13, 2022",
+        "text": "EMA LUBAS JUST STEAMI L6PUKS T6MMATA ARVUTISSSWEEEE",
+        "imgSrc": ""
+    },
+    {
+        "author": "ron-ron.ron",
+        "profile_pic": "assets/images/koos.jpg",
+        "date": "Aug 120, 2022",
+        "text": "Olen Ron, tegin just commiti.",
+        "imgSrc": ""
+    }
+]
