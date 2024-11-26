@@ -1,0 +1,113 @@
+@import 'variables.css';
+
+#add-post {
+    display: none;
+}
+
+.header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.login-container {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: 130px;   /* Adjust based on your header height */
+    padding-bottom: 130px; /* Adjust based on your footer height */
+}
+
+.login-content {
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 15px 80px 5px 80px;
+    font-size: 1.25em;
+    background-color: var(--feedBackgroundColor);
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 15px;
+}
+
+.login-content p {
+    padding-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.login-content h2 {
+    margin-bottom: 15px;
+    color: #ba181b;   
+}
+
+.button {
+    font-size: 1em;
+    padding: 4px;
+    width: 100%;
+    border-radius: 999px;
+    border: 2px solid #fff;
+    transition: 0.5s, border-width ease;
+}
+
+#login-button {
+    background-color: #0ed736;
+    color: white;
+}
+
+.form-group #password, .form-group #email {
+    font-size: 1em;
+}
+
+#create-account {
+    background-color: #ba181b;
+    color: white;
+}
+
+#forgot-password {
+    display: block;
+    text-align: end;
+    font-size: 0.7em;
+}
+
+input {
+    padding: 12px 10px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+.button:hover {
+    transform: scale(1.10); /* Slightly increase the size of the button */
+}
+
+#login-button:hover {
+    background-color: white;
+    border-color: #0ed736;
+    color: #0ed736;
+    
+}
+
+#create-account:hover {
+    background-color: white;
+    border-color: #ba181b;
+    color: #ba181b;
+}
+
+#username {
+    margin-top: 20px;
+    font-size: 1em;
+}
+
+.validation-errors {
+    color: red;
+    font-size: 0.7em;
+}
