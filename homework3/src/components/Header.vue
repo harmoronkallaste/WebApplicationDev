@@ -4,9 +4,9 @@
       <nav>
         <ul>
           <li>
-            <a href="login.html">
+            <router-link to="/login">
               <i class="fa-solid fa-right-to-bracket"></i> <span>Login</span>
-            </a>
+            </router-link>
           </li>
           <li class="seperator">|</li>
           <li>
