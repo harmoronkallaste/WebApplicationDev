@@ -15,7 +15,7 @@
           </li>
         </ul>
       </nav>
-      <div class="profile-pic">
+      <div class="profile-pic" v-if="!isAuthPage">
         <h4 id="profileName">hkallaste</h4>
         <img id="profilePicture" :src="profilePic" @click="toggleDropdown" />
         <div
@@ -25,7 +25,7 @@
         >
           <a>hkallaste</a>
           <a>hkallaste@hotmail.com</a>
-          <a>Logout</a>
+          <button @click="Logout" class="dropdown-logout">Logout</button>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-
+  import { mapState } from 'vuex'
   import profilePic from '@/assets/images/profilepic.jpg'
 
   export default {
@@ -44,12 +44,36 @@
         profilePic,
       }
     },
+    computed: {
+      isAuthPage() {
+        return this.$route.path === '/login' || this.$route.path === '/signup';
+      },
+    },
     methods: {
       toggleDropdown() {
         this.dropdownVisible = !this.dropdownVisible
       },
+      Logout() {
+        fetch("http://localhost:3000/auth/logout", {
+            credentials: 'include', //  Don't forget to specify this if you need cookies
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          console.log('jwt removed');
+          //console.log('jwt removed:' + auth.authenticated());
+          this.$router.push("/login");
+          //location.assign("/");
+        })
+        .catch((e) => {
+          console.log(e);
+          console.log("error logout");
+        });
+      },
     },
   }
+
+  
 
 </script>
 

@@ -15,19 +15,13 @@
                 id="password"
                 type="password"
                 v-model="password"
-                @input="validatePassword"
-                @focus="touched = true"
-                @blur="touched = false"
                 placeholder="Password"
                 required
               />
             </div>
-            <div class="validation-errors" v-if="touched && passwordErrors.length > 0">
-              <p v-for="(error, index) in passwordErrors" :key="index" class="error">{{ error }}</p>
-            </div>
   
             <div class="form-group">
-              <button type="submit" class="button" id="login-button"> Log in </button>
+              <button @click="handleFormSubmit" type="submit" class="button" id="login-button"> Log in </button>
               <span class="or-text">or</span>
               <button @click='this.$router.push("/signup")' type="submit" class="button" id="signup-button"> Sign up </button>
             </div>
@@ -87,43 +81,53 @@
         alert("Logged out");
         // Implement logout functionality
       },
-      validatePassword() {
-        this.passwordErrors = [];
-        const lengthCheck = this.password.length >= 8 && this.password.length < 15;
-        const uppercaseCheck = /[A-Z]/.test(this.password);
-        const lowercaseCheck = (this.password.match(/[a-z]/g) || []).length >= 2;
-        const numericCheck = /\d/.test(this.password);
-        const startsWithUppercase = /^[A-Z]/.test(this.password);
-        const underscoreCheck = this.password.includes("_");
-  
-        if (!lengthCheck) this.passwordErrors.push("Password must be 8-14 characters long.");
-        if (!uppercaseCheck) this.passwordErrors.push("Password must include at least one uppercase letter.");
-        if (!lowercaseCheck) this.passwordErrors.push("Password must include at least two lowercase letters.");
-        if (!numericCheck) this.passwordErrors.push("Password must include at least one numeric value.");
-        if (!startsWithUppercase) this.passwordErrors.push("Password must start with an uppercase letter.");
-        if (!underscoreCheck) this.passwordErrors.push("Password must include the character '_'.");
-      },
       handleFormSubmit() {
-        this.validatePassword();
-        if (this.passwordErrors.length > 0) {
-            alert('Please ensure your password meets all validation criteria.');
-            return;
+        if (!this.email || !this.password) {
+          alert("Email and Password are required!");
+          return;
         }
         this.loginUser();
       },
       loginUser() {
-        const user = this.mockUsers.find(
-          (user) => user.email === this.email && user.password === this.password
-        );
-        if (user) {
-          alert("Login successful!");
-          localStorage.setItem("isLoggedIn", "true");
-          localStorage.setItem("userEmail", this.email);
-          this.$router.push('index');
-        } else {
-            this.$router.push('/'); // For showcasing in assessment
-        }
-      },
+        var data = {
+          email: this.email,
+          password: this.password
+        };
+        // using Fetch - post method - send an HTTP post request to the specified URI with the defined body
+        fetch("http://localhost:3000/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+            credentials: 'include', //  Don't forget to specify this if you need cookies
+            body: JSON.stringify(data),
+        })
+        .then((response) => {
+            if (!response.ok) {
+                return response.json().then((error) => {
+                    throw new Error(error.error);
+                });
+            }
+            return response.json();
+        })
+        .then((data) => {
+        console.log(data);
+        this.$router.push("/");
+        // location.assign("/");
+        })
+        .catch((e) => {
+          console.log(e);
+          alert("Invalid email or password! Please try again.")
+          console.log("error");
+        });
+        // Kasutajad juba andmebaasis:
+        // renofeliks.lindvere@gmail.com
+        // AAawdawd_a213_
+        // harmo.argpart@gag.ee
+        // Kitarrid_2024
+        // ron.vahtra@ut.ee
+        // MaOlenRon_69
+    },
     },
   };
   </script>

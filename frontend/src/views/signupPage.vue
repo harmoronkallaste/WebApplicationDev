@@ -25,10 +25,9 @@
             <div class="validation-errors" v-if="touched && passwordErrors.length > 0">
               <p v-for="(error, index) in passwordErrors" :key="index" class="error">{{ error }}</p>
             </div>
-
   
             <div class="form-group">
-              <button type="submit" class="button" id="login-button"> Sign up </button>
+              <button @click="handleFormSubmit" type="submit" class="button" id="signup-button"> Sign up </button>
             </div>
           </form>
         </main>
@@ -103,25 +102,49 @@
         if (!underscoreCheck) this.passwordErrors.push("Password must include the character '_'.");
       },
       handleFormSubmit() {
+        if (!this.email || !this.password) {
+            alert("Email and Password are required!");
+            return;
+        }     
         this.validatePassword();
         if (this.passwordErrors.length > 0) {
             alert('Please ensure your password meets all validation criteria.');
             return;
         }
-        this.loginUser();
+        this.signupUser();
       },
-      loginUser() {
-        const user = this.mockUsers.find(
-          (user) => user.email === this.email && user.password === this.password
-        );
-        if (user) {
-          alert("Login successful!");
-          localStorage.setItem("isLoggedIn", "true");
-          localStorage.setItem("userEmail", this.email);
-          this.$router.push('index');
-        } else {
-            this.$router.push('/'); // For showcasing in assessment
-        }
+      signupUser() {
+        var data = {
+            email: this.email,
+            password: this.password
+        };
+        // using Fetch - post method - send an HTTP post request to the specified URI with the defined body
+        fetch("http://localhost:3000/auth/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+                credentials: 'include', //  Don't forget to specify this if you need cookies
+                body: JSON.stringify(data),
+        })
+        .then((response) => {
+            if (!response.ok) {
+                return response.json().then((error) => {
+                    throw new Error(error.error);
+                });
+            }
+            return response.json();
+        })
+        .then((data) => {
+        console.log(data);
+        this.$router.push("/");
+        //location.assign("/");
+        })
+        .catch((e) => {
+            console.log(e);
+            alert("Email already in use!")
+            console.log("error");
+        });
       },
     },
   };
