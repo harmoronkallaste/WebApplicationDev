@@ -25,11 +25,10 @@
             <div class="validation-errors" v-if="touched && passwordErrors.length > 0">
               <p v-for="(error, index) in passwordErrors" :key="index" class="error">{{ error }}</p>
             </div>
+
   
             <div class="form-group">
-              <button type="submit" class="button" id="login-button"> Log in </button>
-              <span class="or-text">or</span>
-              <button @click='this.$router.push("/signup")' type="submit" class="button" id="signup-button"> Sign up </button>
+              <button type="submit" class="button" id="login-button"> Sign up </button>
             </div>
           </form>
         </main>

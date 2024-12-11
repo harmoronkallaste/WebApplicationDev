@@ -43,6 +43,9 @@
 }
 
 .form-group {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
     margin-bottom: 15px;
 }
 
@@ -60,7 +63,7 @@
     transition: 0.5s, border-width ease;
 }
 
-#login-button {
+#login-button, #signup-button {
     background-color: #0ed736;
     color: white;
 }
@@ -72,12 +75,6 @@
 #create-account {
     background-color: #ba181b;
     color: white;
-}
-
-#forgot-password {
-    display: block;
-    text-align: end;
-    font-size: 0.7em;
 }
 
 input {
