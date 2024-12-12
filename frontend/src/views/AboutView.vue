@@ -71,7 +71,8 @@
 }
 
 #contacts-header {
-    margin-bottom: 0.5em;
+    margin-bottom: 15px;
+    color: #ba181b; 
 }
 </style>
   
