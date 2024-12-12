@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-      <h4>Web Application Development - Homework 3</h4>
+      <h4>Web Application Development - Homework 4</h4>
       <p>Harmo-Ron Kallaste, Reno Feliks Lindvere, Ron Aaron Vahtra</p>
     </footer>
   </template>

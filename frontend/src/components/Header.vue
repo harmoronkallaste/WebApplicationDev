@@ -3,19 +3,24 @@
     <div class="header-content">
       <nav>
         <ul>
-          <li>
+          <li v-if="isAuthenticated">
             <router-link to="/">
                 <font-awesome-icon icon="house" /> <span>Home</span>
             </router-link>
           </li>
-          <li>
+          <li v-if="!isAuthenticated">
             <router-link to="/login">
               <font-awesome-icon icon="right-to-bracket" /> <span>Login</span>
             </router-link>
           </li>
+          <li>
+            <router-link to="/about">
+              <font-awesome-icon icon="circle-info" /> <span>Contacts</span>
+            </router-link>
+          </li>
         </ul>
       </nav>
-      <div class="profile-pic" v-if="!isAuthPage">
+      <div class="profile-pic" v-if="isAuthenticated && !isAuthPage">
         <h4 id="profileName">hkallaste</h4>
         <img id="profilePicture" :src="profilePic" @click="toggleDropdown" />
         <div
@@ -36,8 +41,19 @@
   import { mapState } from 'vuex'
   import profilePic from '@/assets/images/profilepic.jpg'
 
+  import { library } from '@fortawesome/fontawesome-svg-core'
+  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+  import { faHeart, faRightToBracket, faHouse, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+  import auth from '@/auth'
+
+  // Add desired icons to the library
+  library.add(faHeart, faRightToBracket, faHouse, faInfoCircle);
+
   export default {
     name: 'HeaderComponent',
+    components: {
+      FontAwesomeIcon,
+    },
     data() {
       return {
         dropdownVisible: false,
@@ -46,7 +62,10 @@
     },
     computed: {
       isAuthPage() {
-        return this.$route.path === '/login' || this.$route.path === '/signup';
+        return this.$route.path === '/login' || this.$route.path === '/signup'
+      },
+      isAuthenticated() {
+        return auth.user.authenticated;
       },
     },
     methods: {
@@ -61,9 +80,7 @@
         .then((data) => {
           console.log(data);
           console.log('jwt removed');
-          //console.log('jwt removed:' + auth.authenticated());
           this.$router.push("/login");
-          //location.assign("/");
         })
         .catch((e) => {
           console.log(e);

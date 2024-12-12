@@ -81,10 +81,6 @@
       toggleDropdown() {
         this.dropdownVisible = !this.dropdownVisible;
       },
-      logout() {
-        alert("Logged out");
-        // Implement logout functionality
-      },
       validatePassword() {
         this.passwordErrors = [];
         const lengthCheck = this.password.length >= 8 && this.password.length < 15;
@@ -128,22 +124,21 @@
                 body: JSON.stringify(data),
         })
         .then((response) => {
-            if (!response.ok) {
-                return response.json().then((error) => {
-                    throw new Error(error.error);
-                });
-            }
-            return response.json();
+          if (!response.ok) {
+            return response.json().then((error) => {
+                throw new Error(error.error);
+            });
+          }
+          return response.json();
         })
         .then((data) => {
-        console.log(data);
-        this.$router.push("/");
-        //location.assign("/");
+          console.log(data);
+          this.$router.push("/");
         })
         .catch((e) => {
-            console.log(e);
-            alert("Email already in use!")
-            console.log("error");
+          console.log(e);
+          alert("Email already in use!")
+          console.log("error");
         });
       },
     },
