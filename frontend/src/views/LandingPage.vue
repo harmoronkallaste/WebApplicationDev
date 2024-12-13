@@ -1,19 +1,20 @@
 <!-- src/views/LandingPage.vue -->
 <template>
   <div>
-    <HeaderComponent />
+    <HeaderComponent/>
     <div class="container">
       <main class="main-content">
-        <button class="reset-button" @click="resetLikes">Reset Likes</button> <!-- Reset Likes Button -->
         <PostComponent
           v-for="post in posts"
           :key="post.id"
           :post="post"
-          @like-post="handleLikePost"
+          @click.native="goToPost(post.id)"
         />
       </main>
+      <button v-if="isAuthenticated" class="add-button" @click="goToAddPost">Add Post</button>
+      <button v-if="isAuthenticated" class="delete-button" @click="deleteAllPosts">Delete All Posts</button>
     </div>
-    <FooterComponent />
+    <FooterComponent/>
   </div>
 </template>
 
@@ -21,7 +22,8 @@
 import HeaderComponent from '../components/Header.vue';
 import FooterComponent from '../components/Footer.vue';
 import PostComponent from '../components/Post.vue';
-import { mapState, mapActions, mapMutations } from 'vuex';
+import {mapState, mapActions} from 'vuex';
+import auth from '../auth';
 
 export default {
   name: 'LandingPage',
@@ -30,21 +32,43 @@ export default {
     FooterComponent,
     PostComponent,
   },
+  data() {
+    return {
+      isAuthenticated: false,
+    };
+  },
   computed: {
     ...mapState(['posts']),
   },
   methods: {
-    ...mapActions(['fetchPosts', 'resetAllLikes']),
-    ...mapMutations(['incrementLike']),
-    resetLikes() {
-      this.resetAllLikes(); // Dispatch the action to reset likes
+    ...mapActions(['fetchPosts', 'deleteAllPosts']),
+    async checkAuth() {
+      this.isAuthenticated = await auth.authenticated();
     },
-    handleLikePost(postId) {
-      this.incrementLike(postId); // Pass the postId to the mutation
+    goToPost(postId) {
+      this.$router.push(`/apost/${postId}`);
+    },
+    goToAddPost() {
+      this.$router.push(`/addpost/`);
+    },
+    async deleteAllPosts() {
+      if (!this.isAuthenticated) {
+        this.$router.push('/login');
+        return;
+      }
+      try {
+        await fetch('http://localhost:3000/posts', {
+          method: 'DELETE',
+        });
+        this.fetchPosts();
+      } catch (error) {
+        console.error('Error deleting posts:', error);
+      }
     },
   },
   mounted() {
     this.fetchPosts();
+    this.checkAuth();
   },
 };
 </script>
@@ -64,7 +88,19 @@ export default {
   display: block; /* Makes the button a block-level element */
 }
 
-.reset-button:hover {
+button:hover {
   background-color: #820c0e;
 }
+
+button {
+  background: #ba181b;
+  border: 0;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  color: white;
+  border-radius: 20px;
+}
+
 </style>

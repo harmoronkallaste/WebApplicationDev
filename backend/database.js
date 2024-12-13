@@ -29,11 +29,18 @@ const createTblQuery = `
         id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
         email VARCHAR(200) NOT NULL UNIQUE,
         password VARCHAR(200) NOT NULL 
-    );`;
+    );
+
+    CREATE TABLE IF NOT EXISTS "posts" (
+        id SERIAL PRIMARY KEY,
+        body TEXT NOT NULL,
+        timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+`;
 
 execute(createTblQuery).then(result => {
     if (result) {
-        console.log('Table "users" is created');
+        console.log('Tables "users" and "posts" are created');
     }
 });
 

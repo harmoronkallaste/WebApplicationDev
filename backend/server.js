@@ -126,3 +126,67 @@ app.get('/auth/logout', (req, res) => {
     console.log('delete jwt request arrived');
     res.status(202).clearCookie('jwt').json({ "Msg": "cookie cleared" }).send
 });
+
+// Posts routes
+app.get('/posts', async (req, res) => {
+    try {
+        const posts = await pool.query("SELECT * FROM posts");
+        res.json(posts.rows);
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+});
+
+app.get('/posts/:id', async (req, res) => {
+    try {
+        console.log("get a post with route parameter  request has arrived");
+        const { id } = req.params;
+        const post = await pool.query("SELECT * FROM posts WHERE id = $1", [id]);
+        if (post.rows.length === 0) {
+            return res.status(404).send('Post not found');
+        }
+        res.json(post.rows[0]);
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+});
+
+app.post('/posts', async (req, res) => {
+    try {
+        const { body } = req.body;
+        const newPost = await pool.query("INSERT INTO posts (body, timestamp) VALUES ($1, NOW()) RETURNING *", [body]);
+        res.json(newPost.rows[0]);
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+});
+
+app.put('/posts/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { body } = req.body;
+        const updatedPost = await pool.query("UPDATE posts SET body = $1, timestamp = NOW() WHERE id = $2 RETURNING *", [body, id]);
+        res.json(updatedPost.rows[0]);
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+});
+
+app.delete('/posts', async (req, res) => {
+    try {
+        await pool.query("DELETE FROM posts");
+        res.status(204).send();
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+});
+
+app.delete('/posts/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        await pool.query("DELETE FROM posts WHERE id = $1", [id]);
+        res.status(204).send();
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+});
