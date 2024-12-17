@@ -5,7 +5,7 @@ const pool = new Pool({
     password: "HarmoRenoRon",
     database: "testWad",
     host: "localhost",
-    port: "5433"
+    port: "5450"
 });
 
 const execute = async(query) => {
