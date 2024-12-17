@@ -98,15 +98,11 @@
             console.error("Error fetching data:", error);
           });
       },
-      toggleDropdown() {
-        this.dropdownVisible = !this.dropdownVisible;
-      },
       handleFormSubmit() {
         if (!this.email || !this.password) {
             alert("Email and Password are required!");
             return;
         }
-        this.validatePassword();
         if (this.passwordErrors.length > 0) {
             alert('Please ensure your password meets all validation criteria.');
             return;
